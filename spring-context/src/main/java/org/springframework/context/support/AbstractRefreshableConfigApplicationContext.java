@@ -39,6 +39,9 @@ import org.springframework.util.StringUtils;
 public abstract class AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext
 		implements BeanNameAware, InitializingBean {
 
+	/**
+	 * 配置文件路径
+	 */
 	@Nullable
 	private String[] configLocations;
 
@@ -72,9 +75,12 @@ public abstract class AbstractRefreshableConfigApplicationContext extends Abstra
 	/**
 	 * Set the config locations for this application context.
 	 * <p>If not set, the implementation may use a default as appropriate.
+	 * 设置应用上下文的配置路径
+	 * 如果没有设置,将会使用默认值
 	 */
 	public void setConfigLocations(@Nullable String... locations) {
 		if (locations != null) {
+			// 做null校验,不允许路径为null值
 			Assert.noNullElements(locations, "Config locations must not be null");
 			this.configLocations = new String[locations.length];
 			for (int i = 0; i < locations.length; i++) {

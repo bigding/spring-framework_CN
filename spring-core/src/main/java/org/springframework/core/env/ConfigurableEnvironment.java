@@ -151,17 +151,23 @@ public interface ConfigurableEnvironment extends Environment, ConfigurableProper
 	/**
 	 * Append the given parent environment's active profiles, default profiles and
 	 * property sources to this (child) environment's respective collections of each.
+	 * 将给定父environment的激活属性,默认属性,属性资源赋予子environment各自的集合
 	 * <p>For any identically-named {@code PropertySource} instance existing in both
 	 * parent and child, the child instance is to be preserved and the parent instance
 	 * discarded. This has the effect of allowing overriding of property sources by the
 	 * child as well as avoiding redundant searches through common property source types,
 	 * e.g. system environment and system properties.
+	 * 对于每个同时存在于parent和child的属性资源,child实例将会保存,而父实例将会被丢弃.这样做是为了在child中
+	 * 重写属性资源,同时避免通过属性和类型进行的冗余搜索.比如：系统资源和系统属性
 	 * <p>Active and default profile names are also filtered for duplicates, to avoid
 	 * confusion and redundant storage.
+	 * 激活的和默认的属性名也做了去重过滤,避免冲突和重复存储
 	 * <p>The parent environment remains unmodified in any case. Note that any changes to
 	 * the parent environment occurring after the call to {@code merge} will not be
 	 * reflected in the child. Therefore, care should be taken to configure parent
 	 * property sources and profile information prior to calling {@code merge}.
+	 * parent environment保持在任何情况下不可修改,这意味着在当调用了本方法后,任何对parent environment的修改
+	 * 都不会影响到child environment.因此,在调用本方法之前,当配置parent的配置资源和配置信息时,应该提高注意
 	 * @param parent the environment to merge with
 	 * @since 3.1.2
 	 * @see org.springframework.context.support.AbstractApplicationContext#setParent

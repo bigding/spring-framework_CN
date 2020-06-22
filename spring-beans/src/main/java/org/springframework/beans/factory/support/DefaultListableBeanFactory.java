@@ -89,21 +89,31 @@ import org.springframework.util.StringUtils;
  * Spring's default implementation of the {@link ConfigurableListableBeanFactory}
  * and {@link BeanDefinitionRegistry} interfaces: a full-fledged bean factory
  * based on bean definition metadata, extensible through post-processors.
+ * spring中{@link ConfigurableListableBeanFactory}和{@link BeanDefinitionRegistry}接口的默认实现:
+ * 一个基于定义的bean配置元数据,通过后置配置器扩展的完全成熟的bean工厂
+ * todo full-fledged bean factory该如何理解?
  *
  * <p>Typical usage is registering all bean definitions first (possibly read
  * from a bean definition file), before accessing beans. Bean lookup by name
  * is therefore an inexpensive operation in a local bean definition table,
  * operating on pre-resolved bean definition metadata objects.
+ * 典型的应用场景是在访问bean之前,先注册所有的bean定义(可能从bean配置文件读取).
+ * 当加载与定义bean定义元数据对象时,在本地bean定义列表通过名字查找bean是一个低成本的操作
  *
  * <p>Note that readers for specific bean definition formats are typically
  * implemented separately rather than as bean factory subclasses:
  * see for example {@link PropertiesBeanDefinitionReader} and
+ * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
+ * 注意特点bean格式的读取者一般是单独实现,而不是作为bean工厂的子类:
+ * 详情参考例子{@link PropertiesBeanDefinitionReader} 和
  * {@link org.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
  *
  * <p>For an alternative implementation of the
  * {@link org.springframework.beans.factory.ListableBeanFactory} interface,
  * have a look at {@link StaticListableBeanFactory}, which manages existing
  * bean instances rather than creating new ones based on bean definitions.
+ * 对于{@link org.springframework.beans.factory.ListableBeanFactory}接口的可选实现,
+ * 查看{@link StaticListableBeanFactory}, 它管理现有的bean实例，而不是基于bean定义创建新的实例.
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -206,6 +216,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	/**
 	 * Specify an id for serialization purposes, allowing this BeanFactory to be
 	 * deserialized from this id back into the BeanFactory object, if needed.
+	 * 指定一个序列化id,如果需要的话,可以使用这个id,将这个bean工厂反序列化回bean工厂实例
 	 */
 	public void setSerializationId(@Nullable String serializationId) {
 		if (serializationId != null) {
