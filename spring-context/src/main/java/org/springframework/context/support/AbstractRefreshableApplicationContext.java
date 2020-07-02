@@ -121,7 +121,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 */
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
-		// 如果原来有bean工厂,则销毁
+		// 如果原来有bean工厂,则销毁,再新建bean工厂
 		if (hasBeanFactory()) {
 			destroyBeans();
 			closeBeanFactory();
@@ -159,6 +159,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Determine whether this context currently holds a bean factory,
 	 * i.e. has been refreshed at least once and not been closed yet.
+	 * 确定是否上下文是否已经持有了bean工厂
+	 * 比如.是否至少刷新过一次或者还未被关闭
 	 */
 	protected final boolean hasBeanFactory() {
 		return (this.beanFactory != null);
@@ -190,7 +192,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * with the {@linkplain #getInternalParentBeanFactory() internal bean factory} of this
 	 * context's parent as parent bean factory. Can be overridden in subclasses,
 	 * for example to customize DefaultListableBeanFactory's settings.
-	 * @return the bean factory for this context
+	 * 当每次调用{@link #refresh()}方法时,为当前上下文创建内部bean工厂,默认的实现是创建了一个带有当前上下文parent的
+	 * {@linkplain #getInternalParentBeanFactory() 内部bean工厂}作为parent上下文的
+	 * {@link org.springframework.beans.factory.support.DefaultListableBeanFactory},
+	 * 可以被子类重写,比如定制DefaultListableBeanFactory设置的时候
+	 * @return the bean factory for this context 当前上下文的bean工厂
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowEagerClassLoading
 	 * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#setAllowCircularReferences

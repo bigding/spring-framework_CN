@@ -233,7 +233,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	private final Set<ApplicationListener<?>> applicationListeners = new LinkedHashSet<>();
 
 	/** Local listeners registered before refresh. */
-	/** 当刷新前, 本地监听器注册**/
+	/** 当刷新前, 本地监听器注册. */
 	@Nullable
 	private Set<ApplicationListener<?>> earlyApplicationListeners;
 
@@ -550,6 +550,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			// 准备在当前上下文中使用的bean工厂
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -677,10 +678,12 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Configure the factory's standard context characteristics,
 	 * such as the context's ClassLoader and post-processors.
-	 * @param beanFactory the BeanFactory to configure
+	 * 设置工厂的标准上下文特征,比如上下文加载器和前置处理器
+	 * @param beanFactory the BeanFactory to configure 要设置的bean工厂
 	 */
 	protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 		// Tell the internal bean factory to use the context's class loader etc.
+		// 告知内部的bean工厂去使用上下文类加载器,等操作
 		beanFactory.setBeanClassLoader(getClassLoader());
 		beanFactory.setBeanExpressionResolver(new StandardBeanExpressionResolver(beanFactory.getBeanClassLoader()));
 		beanFactory.addPropertyEditorRegistrar(new ResourceEditorRegistrar(this, getEnvironment()));
@@ -1446,10 +1449,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * <p>Note: Subclasses should check whether the context is still active before
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.
-	 * @return this application context's internal bean factory (never {@code null})
+	 * 子类必须在此处返回内部bean工厂.子类应该高效的实现lookup,以便在反复进行调用的时候不会存在性能风险.
+	 * 注意:子类应该在在返回内部bean工厂钱检查是否上下文是否仍然激活.内部工厂应该被设计为一旦上下文被关闭
+	 * 就不可用.
+	 * todo lookup的含义是什么?
+	 * @return this application context's internal bean factory (never {@code null}) 应用上下文内部bean工厂
 	 * @throws IllegalStateException if the context does not hold an internal bean factory yet
 	 * (usually if {@link #refresh()} has never been called) or if the context has been
 	 * closed already
+	 * 如果上下文至今没有持有一个内部bean工厂(一般来说是{@link #refresh()}还从未被调用过)或者应用上下文已经被关闭了
 	 * @see #refreshBeanFactory()
 	 * @see #closeBeanFactory()
 	 */
