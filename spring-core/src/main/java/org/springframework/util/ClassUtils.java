@@ -179,6 +179,10 @@ public abstract class ClassUtils {
 	 * for example, for class path resource loading (but not necessarily for
 	 * {@code Class.forName}, which accepts a {@code null} ClassLoader
 	 * reference as well).
+	 *
+	 * <p>返回默认的ClassLoader去使用: 如果可用的话,通常为线程上下文ClassLoader;ClassUtils类加载的ClassLoader将会作为备份
+	 * <p>需要在明确期望非空ClassLoader引用的情况下,通过调用线程上下文ClassLoader使用本方法.例如,对于类路径资源加载的情况
+	 * (但对{@code Class.forName} 不是必要的,他也接受空{@code null} ClassLoader)
 	 * @return the default ClassLoader (only {@code null} if even the system
 	 * ClassLoader isn't accessible)
 	 * @see Thread#getContextClassLoader()

@@ -80,6 +80,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * environment will be used by this reader.  Otherwise, the reader will initialize and
 	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
 	 * EnvironmentCapable, while normal BeanFactory implementations are not.
+	 *
 	 * <p>为给定bean工厂创建一个新的AbstractBeanDefinitionReader.
 	 * <p>如果传入的bean工厂不仅仅实现了BeanDefinitionRegistry接口,还实现了ResourceLoader接口,将会使用默认资源加载器.
 	 * 这通常是{@link org.springframework.context.ApplicationContext}实现类的情况

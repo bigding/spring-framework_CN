@@ -235,6 +235,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * <p><b>NOTE:</b> It is generally recommended to not rely on circular references
 	 * between your beans. Refactor your application logic to have the two beans
 	 * involved delegate to a third bean that encapsulates their common logic.
+	 *
      * <p>设置是否允许在bean间有循环引用-并自动尝试去修复.
      * <p>注意循环依赖意味着一个参与其中的bean将会接受另一个还没有被完成初始化的bean的引用,
      * 这可能会在初始化时导致不可预期的副作用,虽然这的确在很多场景下能正常工作.

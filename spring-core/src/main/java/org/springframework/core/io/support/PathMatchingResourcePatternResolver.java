@@ -209,6 +209,9 @@ public class PathMatchingResourcePatternResolver implements ResourcePatternResol
 	/**
 	 * Create a new PathMatchingResourcePatternResolver with a DefaultResourceLoader.
 	 * <p>ClassLoader access will happen via the thread context class loader.
+	 *
+	 * <p>创建一个带有DefaultResourceLoader的PathMatchingResourcePatternResolver
+	 * <p>通过线程上下文加载器将会发生ClassLoader访问.
 	 * @see org.springframework.core.io.DefaultResourceLoader
 	 */
 	public PathMatchingResourcePatternResolver() {
