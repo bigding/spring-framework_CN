@@ -131,6 +131,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	private ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 
 	/** Whether to automatically try to resolve circular references between beans. */
+	/** 是否自动尝试解决bean之间的循环依赖. */
 	private boolean allowCircularReferences = true;
 
 	/**
@@ -234,6 +235,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * <p><b>NOTE:</b> It is generally recommended to not rely on circular references
 	 * between your beans. Refactor your application logic to have the two beans
 	 * involved delegate to a third bean that encapsulates their common logic.
+     * <p>设置是否允许在bean间有循环引用-并自动尝试去修复.
+     * <p>注意循环依赖意味着一个参与其中的bean将会接受另一个还没有被完成初始化的bean的引用,
+     * 这可能会在初始化时导致不可预期的副作用,虽然这的确在很多场景下能正常工作.
+	 * <p>默认值为"true". 把当前值设置为关闭时会在遇到循环引用是排除异常,这会完全禁止循环依赖
+	 * <p><b>注意:</b> 通常建议不要依赖bean之间的循环依赖.重构应用逻辑去封装应用委托的两个bean到
+	 * 第三个包含了他们公共逻辑的bean
 	 */
 	public void setAllowCircularReferences(boolean allowCircularReferences) {
 		this.allowCircularReferences = allowCircularReferences;

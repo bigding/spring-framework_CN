@@ -214,6 +214,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * and {@linkplain #setAllowCircularReferences "allowCircularReferences"} settings,
 	 * if specified. Can be overridden in subclasses to customize any of
 	 * {@link DefaultListableBeanFactory}'s settings.
+     *
+	 * <p>定制当前上下文使用的内部bean工厂.(本方法)被每次{@link #refresh()}操作调用
+	 * <p>如果指定,默认的实现会应用当前上下文的{@linkplain #setAllowBeanDefinitionOverriding "allowBeanDefinitionOverriding"}
+	 * 和{@linkplain #setAllowCircularReferences "allowCircularReferences"}设置.
+	 * 可以在子类定制任何{@link DefaultListableBeanFactory}的配置
 	 * @param beanFactory the newly created bean factory for this context
 	 * @see DefaultListableBeanFactory#setAllowBeanDefinitionOverriding
 	 * @see DefaultListableBeanFactory#setAllowCircularReferences
@@ -232,9 +237,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	/**
 	 * Load bean definitions into the given bean factory, typically through
 	 * delegating to one or more bean definition readers.
-	 * @param beanFactory the bean factory to load bean definitions into
-	 * @throws BeansException if parsing of the bean definitions failed
-	 * @throws IOException if loading of bean definition files failed
+	 * 加载bean定义到给定bean工厂,一般通过委托到一个或这个bean定义读取器
+	 * @param beanFactory the bean factory to load bean definitions into 加载bean定义的bean工厂
+	 * @throws BeansException if parsing of the bean definitions failed 如果解析bean定义失败
+	 * @throws IOException if loading of bean definition files failed 如果加载bean定义文件失败
 	 * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 	 */

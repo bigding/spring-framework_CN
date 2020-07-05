@@ -39,6 +39,14 @@ import javax.annotation.meta.When;
  * <p>Can be used in association with {@code @NonNullApi} or {@code @NonNullFields} to
  * override the default non-nullable semantic to nullable.
  *
+ * <p>一个通用的spring注解,声明了在某些环境下可以为null的元素.
+ *
+ * <p>利用JSR-305元注解去表示支持JSR-305的通用工具在java中是否为空,并且被用来在Kotlin指示spring API是否为空.
+ *
+ * <p>应该被使用在参数,返回值和字段中.重写方法时应该保留父方法的{@code @Nullable},除非子方法和父方法行为不同.
+ *
+ * <p>可以和{@code @NonNullApi} 或 {@code @NonNullFields}一同使用去重写默认非空的语义,使其为空.
+ *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
  * @since 5.0

@@ -1331,6 +1331,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Return the internal bean factory of the parent context if it implements
 	 * ConfigurableApplicationContext; else, return the parent context itself.
+     * <p>如果实现了ConfigurableApplicationContext接口则返回父上下文内部bean工厂,否则,返回父上下文
 	 * @see org.springframework.context.ConfigurableApplicationContext#getBeanFactory
 	 */
 	@Nullable
@@ -1450,7 +1451,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.
 	 * 子类必须在此处返回内部bean工厂.子类应该高效的实现lookup,以便在反复进行调用的时候不会存在性能风险.
-	 * 注意:子类应该在在返回内部bean工厂钱检查是否上下文是否仍然激活.内部工厂应该被设计为一旦上下文被关闭
+	 * 注意:子类应该在返回内部bean工厂前检查上下文是否仍然激活.内部工厂应该被设计为一旦上下文被关闭
 	 * 就不可用.
 	 * todo lookup的含义是什么?
 	 * @return this application context's internal bean factory (never {@code null}) 应用上下文内部bean工厂

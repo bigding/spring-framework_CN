@@ -36,6 +36,11 @@ import org.springframework.lang.Nullable;
  * making them obvious to ApplicationContext client code. The present
  * methods should only be used by startup and shutdown code.
  *
+ * <p>SPI接口由大多数(不是所有)应用程序环境实现.提供设备去配置一个应用上下文,还在
+ * {@link org.springframework.context.ApplicationContext }接口提供了应用上下文客户端方法
+ *
+ * <p>配置和生命周期方法被封装在这里,为了避免他们暴露给应用上下文客户端代码,当前的方法应该只被使用在启动和关闭代码中
+ *
  * @author Juergen Hoeller
  * @author Chris Beams
  * @author Sam Brannen
@@ -46,6 +51,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Any number of these characters are considered delimiters between
 	 * multiple context config paths in a single String value.
+	 * 以下字符串中的任意一个字符都被认为是多个上下文配置路径的分隔符
 	 * @see org.springframework.context.support.AbstractXmlApplicationContext#setConfigLocation
 	 * @see org.springframework.web.context.ContextLoader#CONFIG_LOCATION_PARAM
 	 * @see org.springframework.web.servlet.FrameworkServlet#setContextConfigLocation
@@ -55,6 +61,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	/**
 	 * Name of the ConversionService bean in the factory.
 	 * If none is supplied, default conversion rules apply.
+	 * 在这个工厂的ConversionService bean的名字,如果没有被设置,默认的conversion规则将会被使用
 	 * @since 3.0
 	 * @see org.springframework.core.convert.ConversionService
 	 */
@@ -224,10 +231,17 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 	 * is active, that is, in-between {@link #refresh()} and {@link #close()}.
 	 * The {@link #isActive()} flag can be used to check whether the context
 	 * is in an appropriate state.
-	 * @return the underlying bean factory
+	 * 返回当前应用上下文的内部bean工厂,可以被底层工厂用于访问特定的功能
+	 * 注意:不要使用此进行bean工厂后置处理,单例类将会在被实例化之前就准备好.使用一个BeanFactoryPostProcessor在bean被访问前拦截
+	 * bean工厂启动过程.通常,当前的内部工厂在上下文激活后可以被访问,激活的状态指的是,在调用了 {@link #refresh()} 和
+	 * {@link #close()}直接的时间段,{@link #isActive()}可以被用于检查是否上下文在一个适当的状态
+	 * todo singletons 含义
+	 * @return the underlying bean factory 底层的bean工厂
 	 * @throws IllegalStateException if the context does not hold an internal
 	 * bean factory (usually if {@link #refresh()} hasn't been called yet or
 	 * if {@link #close()} has already been called)
+	 * 如果这个上下文没有持有一个内部bean工厂(通常是指如果{@link #refresh()}还没有被调用或者
+	 * {@link #close()}已经被调用了的情况)
 	 * @see #isActive()
 	 * @see #refresh()
 	 * @see #close()

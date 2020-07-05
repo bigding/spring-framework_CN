@@ -41,6 +41,10 @@ import org.springframework.util.Assert;
  * <p>Provides common properties like the bean factory to work on
  * and the class loader to use for loading bean classes.
  *
+ * <p>bean定义读取器的抽象基类,实现了{@link BeanDefinitionReader}接口
+ *
+ * <p>提供了公共属性,类似于被使用与加载bean class的bean工厂和class loader
+ *
  * @author Juergen Hoeller
  * @author Chris Beams
  * @since 11.12.2003
@@ -76,6 +80,14 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * environment will be used by this reader.  Otherwise, the reader will initialize and
 	 * use a {@link StandardEnvironment}. All ApplicationContext implementations are
 	 * EnvironmentCapable, while normal BeanFactory implementations are not.
+	 * <p>为给定bean工厂创建一个新的AbstractBeanDefinitionReader.
+	 * <p>如果传入的bean工厂不仅仅实现了BeanDefinitionRegistry接口,还实现了ResourceLoader接口,将会使用默认资源加载器.
+	 * 这通常是{@link org.springframework.context.ApplicationContext}实现类的情况
+	 * <p>如果给的是原始的BeanDefinitionRegistry,默认的资源加载器将会是
+	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver}
+	 * <p>如果传入的bean工厂实现了{@link EnvironmentCapable},他的环境将会被读取器使用,除此之外,读取器还要初始化和
+	 * 使用{@link StandardEnvironment}.所有的应用上下文实现也是EnvironmentCapable的(实现了EnvironmentCapable接口),
+	 * 而正常的bean工厂实现却不是.
 	 * @param registry the BeanFactory to load bean definitions into,
 	 * in the form of a BeanDefinitionRegistry
 	 * @see #setResourceLoader
