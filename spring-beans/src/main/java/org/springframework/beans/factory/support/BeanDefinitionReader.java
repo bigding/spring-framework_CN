@@ -84,6 +84,7 @@ public interface BeanDefinitionReader {
 
 	/**
 	 * Load bean definitions from the specified resource.
+	 * <p>从特定资源加载bean资源
 	 * @param resource the resource descriptor
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors

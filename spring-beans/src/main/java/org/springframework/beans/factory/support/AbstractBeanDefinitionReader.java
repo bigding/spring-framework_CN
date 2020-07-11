@@ -133,6 +133,10 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * resource pattern resolving through the ResourcePatternResolver interface.
 	 * <p>Setting this to {@code null} suggests that absolute resource loading
 	 * is not available for this bean definition reader.
+     *
+     * <p>设置资源位置ResourceLoader去使用,如果指定ResourcePatternResolver,bean定义读取器将会解析资源模式为资源数组.
+     * <p>默认值为PathMatchingResourcePatternResolver,也可以通过ResourcePatternResolver接口实现资源模式解析.
+     * <p>设置当前值为{@code null},说明在当前bean定义读取器,绝对的资源加载是不可用的.
 	 * @see org.springframework.core.io.support.ResourcePatternResolver
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
@@ -151,6 +155,10 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * <p>Default is {@code null}, which suggests to not load bean classes
 	 * eagerly but rather to just register bean definitions with class names,
 	 * with the corresponding Classes to be resolved later (or never).
+	 *
+	 * <p>为bean class设置ClassLoader去使用
+	 * <p>默认为{@code null}, ,建议不要不要急切地加载bean类，
+     * 而是只使用类名注册bean定义,稍后(或永不)将解析相应的类
 	 * @see Thread#getContextClassLoader()
 	 */
 	public void setBeanClassLoader(@Nullable ClassLoader beanClassLoader) {

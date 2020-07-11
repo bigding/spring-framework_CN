@@ -87,12 +87,16 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 		// Configure the bean definition reader with this context's
 		// resource loading environment.
+		// 配置带有上下文的bean定义读取器
+		// 资源加载环境
 		beanDefinitionReader.setEnvironment(this.getEnvironment());
 		beanDefinitionReader.setResourceLoader(this);
 		beanDefinitionReader.setEntityResolver(new ResourceEntityResolver(this));
 
 		// Allow a subclass to provide custom initialization of the reader,
 		// then proceed with actually loading the bean definitions.
+		// 允许子类去为读取器提供定制初始化
+		// 然后继续实际加载bean定义
 		initBeanDefinitionReader(beanDefinitionReader);
 		loadBeanDefinitions(beanDefinitionReader);
 	}
@@ -102,6 +106,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * definitions of this context. Default implementation is empty.
 	 * <p>Can be overridden in subclasses, e.g. for turning off XML validation
 	 * or using a different XmlBeanDefinitionParser implementation.
+	 *
+	 * <p>初始化用于加载当前上下文的读取器,默认实现为空
+	 * <p>可以被子类重写.例如,关闭xml校验或者使用不同的XmlBeanDefinitionParser实现
 	 * @param reader the bean definition reader used by this context
 	 * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader#setDocumentReaderClass
 	 */
@@ -113,6 +120,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * Load the bean definitions with the given XmlBeanDefinitionReader.
 	 * <p>The lifecycle of the bean factory is handled by the {@link #refreshBeanFactory}
 	 * method; hence this method is just supposed to load and/or register bean definitions.
+	 *
+	 * <p>用给定的XmlBeanDefinitionReader加载bean定义
+	 * <p>bean工厂的生命周期被{@link #refreshBeanFactory}方法处理,因此,此方法只被建议加载和(或)注册bean定义.
 	 * @param reader the XmlBeanDefinitionReader to use
 	 * @throws BeansException in case of bean registration errors
 	 * @throws IOException if the required XML document isn't found
@@ -137,6 +147,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * files that this context should be built with.
 	 * <p>The default implementation returns {@code null}. Subclasses can override
 	 * this to provide pre-built Resource objects rather than location Strings.
+	 *
+	 * <p>返回资源对象的设置,刷新到当前上下文应该构建的XML bean定义文件中.
+	 * <p>默认的实现返回 {@code null}. 子类可以重写本方法去提供预构建资源对象,而不是位置字符串.
 	 * @return an array of Resource objects, or {@code null} if none
 	 * @see #getConfigLocations()
 	 */

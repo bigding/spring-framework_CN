@@ -56,6 +56,7 @@ public class EncodedResource implements InputStreamSource {
 	/**
 	 * Create a new {@code EncodedResource} for the given {@code Resource},
 	 * not specifying an explicit encoding or {@code Charset}.
+	 * <p>使用给定的 {@code Resource}创建新的{@code EncodedResource},不给定编码和字符集
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 */
 	public EncodedResource(Resource resource) {
@@ -75,6 +76,7 @@ public class EncodedResource implements InputStreamSource {
 	/**
 	 * Create a new {@code EncodedResource} for the given {@code Resource},
 	 * using the specified {@code Charset}.
+	 * <p>使用给定的 {@code Resource}创建新的{@code EncodedResource},使用给定的字符集{@code Charset}
 	 * @param resource the {@code Resource} to hold (never {@code null})
 	 * @param charset the {@code Charset} to use for reading from the resource
 	 */

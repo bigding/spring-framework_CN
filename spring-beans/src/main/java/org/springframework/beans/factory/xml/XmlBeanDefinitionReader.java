@@ -152,6 +152,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Set whether to use XML validation. Default is {@code true}.
 	 * <p>This method switches namespace awareness on if validation is turned off,
 	 * in order to still process schema namespaces properly in such a scenario.
+	 *
+	 * <p>设置是否使用xml校验,默认为{@code true}.
+	 * <p>为了在某些场景下仍然正确的处理模式命名空间,如果校验被关闭,方法将会切换命名空间.
 	 * @see #setValidationMode
 	 * @see #setNamespaceAware
 	 */
@@ -255,6 +258,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Set a SAX entity resolver to be used for parsing.
 	 * <p>By default, {@link ResourceEntityResolver} will be used. Can be overridden
 	 * for custom entity resolution, for example relative to some specific base path.
+	 * <p>设置SAX(simple API for XML)实体处理器用于解析.
+	 * <p>默认情况下,{@link ResourceEntityResolver}将会被使用,可以被定制的实体处理器重写,比如相对于某些特定的基本路径
 	 */
 	public void setEntityResolver(@Nullable EntityResolver entityResolver) {
 		this.entityResolver = entityResolver;
@@ -263,10 +268,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * Return the EntityResolver to use, building a default resolver
 	 * if none specified.
+	 *
+	 * <p>返回实体解析器使用,如果没有特定的解析器,则构建一个默认的解析器
 	 */
 	protected EntityResolver getEntityResolver() {
 		if (this.entityResolver == null) {
-			// Determine default EntityResolver to use.
+			// Determine default EntityResolver to use. 使用默认的实体解析器
 			ResourceLoader resourceLoader = getResourceLoader();
 			if (resourceLoader != null) {
 				this.entityResolver = new ResourceEntityResolver(resourceLoader);
@@ -303,6 +310,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Load bean definitions from the specified XML file.
+	 * <p>从特定的xml文件加载bean定义
 	 * @param resource the resource descriptor for the XML file
 	 * @return the number of bean definitions found
 	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
@@ -314,6 +322,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Load bean definitions from the specified XML file.
+	 * <p>从特定的xml文件加载bean定义
 	 * @param encodedResource the resource descriptor for the XML file,
 	 * allowing to specify an encoding to use for parsing the file
 	 * @return the number of bean definitions found
@@ -378,6 +387,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Actually load bean definitions from the specified XML file.
+	 * 从特定的xml文件实际加载bean定义
 	 * @param inputSource the SAX InputSource to read from
 	 * @param resource the resource descriptor for the XML file
 	 * @return the number of bean definitions found
@@ -423,6 +433,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	/**
 	 * Actually load the specified document using the configured DocumentLoader.
+	 * 使用配置过的文档加载器实际加载特定文档
 	 * @param inputSource the SAX InputSource to read from
 	 * @param resource the resource descriptor for the XML file
 	 * @return the DOM Document
@@ -441,6 +452,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * mode gets {@link #detectValidationMode detected} from the given resource.
 	 * <p>Override this method if you would like full control over the validation
 	 * mode, even when something other than {@link #VALIDATION_AUTO} was set.
+	 *
+	 * <p>为特定的{@link Resource}决定特定的校验模式.如果没有配置明确的校验模式,校验模式将会从给定的资源
+	 * 获取{@link #detectValidationMode detected}
+	 * <p>如果你想完全控制这个校验模式,则重写此方法,即使是设置了{@link #VALIDATION_AUTO}以外的内容
 	 * @see #detectValidationMode
 	 */
 	protected int getValidationModeForResource(Resource resource) {
@@ -498,10 +513,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Register the bean definitions contained in the given DOM document.
 	 * Called by {@code loadBeanDefinitions}.
 	 * <p>Creates a new instance of the parser class and invokes
+	 *
+	 * <p>注册给定的DOM document对象包含的bean定义
+	 * <p>创建一个本解析类新的实例并调用
 	 * {@code registerBeanDefinitions} on it.
 	 * @param doc the DOM document
 	 * @param resource the resource descriptor (for context information)
-	 * @return the number of bean definitions found
+	 * @return the number of bean definitions found 找到的bean定义数量
 	 * @throws BeanDefinitionStoreException in case of parsing errors
 	 * @see #loadBeanDefinitions
 	 * @see #setDocumentReaderClass
@@ -518,6 +536,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Create the {@link BeanDefinitionDocumentReader} to use for actually
 	 * reading bean definitions from an XML document.
 	 * <p>The default implementation instantiates the specified "documentReaderClass".
+	 *
+	 * <p>为从xml document对象真实读取到的bean定义创建{@link BeanDefinitionDocumentReader}去使用
+	 * <p>默认实现实例指定的"documentReaderClass"
 	 * @see #setDocumentReaderClass
 	 */
 	protected BeanDefinitionDocumentReader createBeanDefinitionDocumentReader() {
